@@ -1,23 +1,22 @@
-const express = require('express');
+const express = require('express')
 
-const User = require('../models/user');
+const User = require('../models/user')
 
-const router = express.Router();
+const router = express.Router()
 
 router.post('/register', async (req, res) => {
-  const { email } = req.body;
+  const { email } = req.body
   try {
-    if (await User.findOne({ email }))
-      return res.status(400).send({ error: 'user already exist' });
+    if (await User.findOne({ email })) { return res.status(409).send({ error: 'user already exist' }) }
 
-    const user = await User.create(req.body);
+    const user = await User.create(req.body)
 
-    user.password = undefined;
+    user.password = undefined
 
-    return res.send({ user });
+    return res.send({ user })
   } catch {
-    return res.status(400).send({ error: 'failed register' });
+    return res.status(500).send({ error: 'failed register' })
   }
-});
+})
 
-module.exports = app => app.use('/auth', router);
+module.exports = router
