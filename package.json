@@ -4,8 +4,11 @@
   "description": "api mongodb",
   "main": "index.js",
   "scripts": {
-    "dev": "node node_modules/nodemon/bin/nodemon src/server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
   },
   "author": "Newton Delbuque",
   "license": "ISC",
@@ -19,6 +22,13 @@
     "node-restful": "^0.2.6"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "@types/jest": "^26.0.20",
+    "eslint": "^7.18.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.0.1"
   }
 }

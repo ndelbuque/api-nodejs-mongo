@@ -1,11 +1,10 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const database = require('./database')
+const app = require('./app')
 
-const app = express();
+const PORT = process.env.PORT || 3000
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+database.createConnection()
 
-require('./controllers/authController')(app);
-
-app.listen(3000);
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`)
+})
